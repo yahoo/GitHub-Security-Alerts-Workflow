@@ -9,10 +9,11 @@ from constants import graphql_url
 from constants import jira_url
 from arguments import jira_project_key
 from constants import headers_jira
+from arguments import vulnerabilities_issue_created_track_path
 import json
 import collections
 
-## A simple function to use requests.post to make the API call. Note the json= section.
+# A simple function to use requests.post to make the API call. Note the json= section.
 
 
 def run_query(query):
@@ -54,7 +55,9 @@ vulnerabilities_issues_created_values_list = []
 def create_jira_issue():
     for i in range(0,len(vulnerabilities_keys_list)):
 
-        if vulnerabilities_keys_list[i] not in vulnerabilities_issues_created_keys_list and vulnerabilities_values_list[i] not in vulnerabilities_issues_created_values_list:
+        if vulnerabilities_keys_list[i] not in vulnerabilities_issues_created_keys_list and \
+                vulnerabilities_values_list[i] not in vulnerabilities_issues_created_values_list and \
+                vulnerabilities_keys_list[i] not in open(vulnerabilities_issue_created_track_path).read():
 
             issue_body = {"fields": {
                 "project":
@@ -69,18 +72,23 @@ def create_jira_issue():
                 }
             }
             }
+
             issue_body_data = json.dumps(issue_body)
             request = requests.post(jira_url, data=issue_body_data, headers=headers_jira)
 
             vulnerabilities_issues_created_keys_list.append(vulnerabilities_keys_list[i])
             vulnerabilities_issues_created_values_list.append(vulnerabilities_values_list[i])
 
+            tracked_repos = '\n'.join(vulnerabilities_issues_created_keys_list)
+
+            f = open(vulnerabilities_issue_created_track_path, "w")
+            f.write(tracked_repos)
+
             if request.status_code == 201:
                 print(request.json())
 
             else:
                 raise Exception("Issue failed to be created by returning code of {}. {}".format(request.status_code,
-
                                                                                               request.json()))
 
             if len(vulnerabilities_issues_created_keys_list) == len(vulnerabilities_keys_list) and\
@@ -91,5 +99,4 @@ def create_jira_issue():
 
 
 ans = create_jira_issue()
-
-
+print(len(vulnerabilities_issues_created_keys_list))
