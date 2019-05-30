@@ -23,7 +23,7 @@ def run_query(query):
         raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
 
 
-result = run_query(query) # Execute the query
+result = run_query(query)  # Execute the query
 
 
 def get_vulnerabilities():
@@ -52,24 +52,23 @@ vulnerabilities_issues_created_values_list = []
 
 
 def create_jira_issue():
-    for i in range(0,len(vulnerabilities_keys_list)):
+    for i in range(0, len(vulnerabilities_keys_list)):
 
         if vulnerabilities_keys_list[i] not in vulnerabilities_issues_created_keys_list and \
                 vulnerabilities_values_list[i] not in vulnerabilities_issues_created_values_list and \
                 vulnerabilities_keys_list[i] not in open(args.vulnerabilities_issue_created_track_path).read():
 
-            issue_body = {"fields": {
-                "project":
-                    {
+            issue_body = {
+                "fields": {
+                    "project":{
                         "key": "%s" % (args.jira_project_key)
                     },
-                "summary": "Security vulnerability issues found in project %s" % (vulnerabilities_keys_list[i]),
-                "description": "Following are the list of vulnerabilities found for the above project %s" %
-                               (vulnerabilities_values_list[i]),
-                "issuetype": {
-                    "name": "Defect"
+                    "summary": "Security vulnerability issues found in project %s" % (vulnerabilities_keys_list[i]),
+                    "description": "Following are the list of vulnerabilities found for the above project %s" % (vulnerabilities_values_list[i]),
+                    "issuetype": {
+                        "name": "Defect"
+                    }
                 }
-            }
             }
 
             issue_body_data = json.dumps(issue_body)
@@ -87,10 +86,9 @@ def create_jira_issue():
                 print(request.json())
 
             else:
-                raise Exception("Issue failed to be created by returning code of {}. {}".format(request.status_code,
-                                                                                              request.json()))
+                raise Exception("Issue failed to be created by returning code of {}. {}".format(request.status_code, request.json()))
 
-            if len(vulnerabilities_issues_created_keys_list) == len(vulnerabilities_keys_list) and\
+            if len(vulnerabilities_issues_created_keys_list) == len(vulnerabilities_keys_list) and \
                     len(vulnerabilities_issues_created_values_list) == len(vulnerabilities_values_list):
                 return True
             else:

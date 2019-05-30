@@ -11,11 +11,9 @@ headers_graphql = {
 
 headers_jira = {
     'Content-Type': 'application/json',
-    'Authorization': 'Basic %s' %(parse_arguments().jira_authorization)
+    'Authorization': 'Basic %s' % (parse_arguments().jira_authorization)
 }
 
 graphql_url = "https://api.github.com/graphql"
 
 jira_url = parse_arguments().jira_url
-
-
