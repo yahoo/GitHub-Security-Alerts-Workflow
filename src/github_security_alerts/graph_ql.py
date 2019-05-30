@@ -1,22 +1,21 @@
 # Copyright 2019, Oath Inc.
 # Licensed under the terms of the Apache 2.0 license. See LICENSE file in project root for terms.
 
-import requests
-import pprint
-from queries import query
-from constants import headers_graphql
-from constants import graphql_url
-from constants import jira_url
-from arguments import jira_project_key
-from constants import headers_jira
-from arguments import vulnerabilities_issue_created_track_path
 import json
 import collections
 
-# A simple function to use requests.post to make the API call. Note the json= section.
+import requests
+
+from .arguments import parse_arguments
+from .queries import query
+from .constants import headers_graphql, graphql_url, jira_url, headers_jira
+
+
+args = parse_arguments()
 
 
 def run_query(query):
+    """A simple function to use requests.post to make the API call. Note the json= section."""
     request = requests.post(graphql_url, json={'query': query}, headers=headers_graphql)
     if request.status_code == 200:
         return request.json()
@@ -57,12 +56,12 @@ def create_jira_issue():
 
         if vulnerabilities_keys_list[i] not in vulnerabilities_issues_created_keys_list and \
                 vulnerabilities_values_list[i] not in vulnerabilities_issues_created_values_list and \
-                vulnerabilities_keys_list[i] not in open(vulnerabilities_issue_created_track_path).read():
+                vulnerabilities_keys_list[i] not in open(args.vulnerabilities_issue_created_track_path).read():
 
             issue_body = {"fields": {
                 "project":
                     {
-                        "key": "%s" % (jira_project_key)
+                        "key": "%s" % (args.jira_project_key)
                     },
                 "summary": "Security vulnerability issues found in project %s" % (vulnerabilities_keys_list[i]),
                 "description": "Following are the list of vulnerabilities found for the above project %s" %
@@ -81,7 +80,7 @@ def create_jira_issue():
 
             tracked_repos = '\n'.join(vulnerabilities_issues_created_keys_list)
 
-            f = open(vulnerabilities_issue_created_track_path, "w")
+            f = open(args.vulnerabilities_issue_created_track_path, "w")
             f.write(tracked_repos)
 
             if request.status_code == 201:
