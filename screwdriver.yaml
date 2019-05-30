@@ -26,11 +26,6 @@ jobs:
     template: python/validate_security
     requires: [~commit, ~pr]
 
-  # The code doesn't currently have type annotations
-  # validate_type:
-  #   template: python/validate_type
-  #   requires: [~commit, ~pr]
-
   generate_version:
     template: python/generate_version
     requires: [~commit]
@@ -38,7 +33,7 @@ jobs:
   publish_test_pypi:
     template: python/package_python
     environment:
-      PUBLISH: True
+      PUBLISH: False
       TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
     requires: [validate_test, validate_lint, validate_codestyle, validate_safetydb, validate_security, generate_version]
 
