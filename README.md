@@ -29,12 +29,13 @@ pip install https://github.com/dwighthubbard/GitHub-Security-Alerts-Workflow/arc
 
 Use the following command to run this script:
 
-`python3 graph_ql.py graph_ql_authorization_key jira_authorization_key jira_url jira_project_key`
+`graph_ql.py graph_ql_authorization_key jira_authorization_key jira_url jira_project_key vulnerabilities_issue_created_track_path`
 
 * graph_ql_authorization_key - A GitHub GraphQL access token that has the ability to view security alerts for the chosen repo.
 * jira_authorization_key - An authorization key for your Jira instance with the ability to create and modify tickets.
 * jira_url - The endpoint for your Jira instance's issue API, e.g. https://jira.xyz.com/rest/api/2/issue/
 * jira_project_key - The identifier key for the Jira project you want to create issues for.
+* vulnerabilities_issue_created_track_path - Issue file to create
 
 ## Contribute
 
