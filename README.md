@@ -22,7 +22,7 @@ This script requires Python 3.5 or newer to run, so ensure you have this install
 Installation of this script is as simple as the following:
 
 ```console
-pip install https://github.com/dwighthubbard/GitHub-Security-Alerts-Workflow/archive/master.tar.gz
+pip install https://github.com/yahoo/GitHub-Security-Alerts-Workflow/archive/master.tar.gz
 ```
 
 ## Usage
