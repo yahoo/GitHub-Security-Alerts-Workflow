@@ -16,7 +16,7 @@ class ArgumentsTestCase(TestCase):
         sys.argv = ['graph_ql.py', 'graph_ql_authorization_key',  'jira_authorization_key', 'jira_url', 'jira_project_key', 'vulnerabilities_issue_created_track_path']
         args = parse_arguments()
         print(args)
-        self.assertEqual(args.graph_ql_authorization, 'graph_ql_authorization_key')
+        self.assertEqual(args.graph_ql_authorization, 'graphql_authorization_key')
         self.assertEqual(args.jira_authorization, 'jira_authorization_key')
         self.assertEqual(args.jira_url, 'jira_url')
         self.assertEqual(args.jira_project_key, 'jira_project_key')
