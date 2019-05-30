@@ -33,8 +33,9 @@ jobs:
   publish_test_pypi:
     template: python/package_python
     environment:
-      # Note, this step will not publish unless the TEST_PYPI_USER and TEST_PYPI_PASSWORD secrets are added to the screwdriver pipeline
-      PUBLISH: True
+      # Note, this step will not publish unless the TEST_PYPI_USER and TEST_PYPI_PASSWORD secrets are added to the screwdriver pipeline and
+      # the Publish variable below is set to True
+      PUBLISH: False
       TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
     requires: [validate_test, validate_lint, validate_codestyle, validate_safetydb, validate_security, generate_version]
 

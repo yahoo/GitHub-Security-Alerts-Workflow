@@ -18,9 +18,12 @@ This purpose of this project is to manage security vulnerabilities for open sour
 
 ## Install
 
-This script requires Python3 to run, so ensure you have this installed first. Installation of this script is as simple as the following:
+This script requires Python 3.5 or newer to run, so ensure you have this installed first. 
+Installation of this script is as simple as the following:
 
-`git clone https://github.com/yahoo/GitHub-Security-Alerts-Workflow.git $$ cd GitHub-Security-Alerts-Workflow`
+```console
+pip install https://github.com/dwighthubbard/GitHub-Security-Alerts-Workflow/archive/master.tar.gz
+```
 
 ## Usage
 
@@ -44,5 +47,3 @@ Ashley Wolf: awolf@verizonmedia.com
 ## License
 
 This project is licensed under the terms of the [Apache 2.0](LICENSE-Apache-2.0) open source license. Please refer to [LICENSE](LICENSE) for the full terms.
-
-
