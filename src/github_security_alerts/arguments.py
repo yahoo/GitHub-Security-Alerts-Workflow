@@ -10,7 +10,7 @@ def parse_arguments() -> argparse.Namespace:
     """
     print(sys.argv)
     parser = argparse.ArgumentParser()
-    parser.add_argument('graph_ql_authorization')
+    parser.add_argument('graphql_authorization')
     parser.add_argument('jira_authorization')
     parser.add_argument('jira_url')
     parser.add_argument('jira_project_key')
