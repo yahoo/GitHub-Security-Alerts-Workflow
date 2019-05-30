@@ -5,8 +5,8 @@ from .arguments import parse_arguments
 
 
 headers_graphql = {
- 'Accept': 'application/vnd.github.vixen-preview',
- 'Authorization': 'bearer %s' % (parse_arguments().graphql_authorization),
+    'Accept': 'application/vnd.github.vixen-preview',
+    'Authorization': 'bearer %s' % (parse_arguments().graphql_authorization),
 }
 
 headers_jira = {

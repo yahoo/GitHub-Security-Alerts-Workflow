@@ -60,7 +60,7 @@ def create_jira_issue():
 
             issue_body = {
                 "fields": {
-                    "project":{
+                    "project": {
                         "key": "%s" % (args.jira_project_key)
                     },
                     "summary": "Security vulnerability issues found in project %s" % (vulnerabilities_keys_list[i]),
