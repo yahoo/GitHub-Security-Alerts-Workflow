@@ -4,14 +4,15 @@
 from .arguments import parse_arguments
 
 
+args = parse_arguments()
 headers_graphql = {
     'Accept': 'application/vnd.github.vixen-preview',
-    'Authorization': 'bearer %s' % (parse_arguments().graphql_authorization),
+    'Authorization': 'bearer %s' % (args.graphql_authorization),
 }
 
 headers_jira = {
     'Content-Type': 'application/json',
-    'Authorization': 'Basic %s' % (parse_arguments().jira_authorization)
+    'Authorization': 'Basic %s' % (args.jira_authorization)
 }
 
 graphql_url = "https://api.github.com/graphql"
