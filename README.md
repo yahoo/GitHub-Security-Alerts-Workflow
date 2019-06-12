@@ -38,7 +38,7 @@ Use the following command to run this script:
 Please refer to [the contributing.md file](Contributing.md) for information about how to get involved. We welcome issues, questions, and pull requests. Pull Requests are welcome.
 
 ## Maintainers
-Manikandan Subramaniam: manikandan.subramaniam@verizonmedia.com
+Manikandan Subramaniam: manikandan.subramaniam@verizonmedia.com <br>
 Ashley Wolf: awolf@verizonmedia.com
 
 ## License
